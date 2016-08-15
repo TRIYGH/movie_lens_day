@@ -1,0 +1,8 @@
+<h1>MOVIES !!!</h1>
+<ol>
+{% for movie in a_movie %}
+    <li>
+        {{ movie.id }}:   {{ movie.title }}
+    </li>
+    {% endfor %}
+</ol>

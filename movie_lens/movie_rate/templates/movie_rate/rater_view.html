@@ -1,0 +1,10 @@
+
+<h2>Rater View:</h2>
+<ol>
+{% for dud in dude %}
+    <li>
+        User: {{ dud.id }}  is  {{ dud.age }} year old {% if dud.gender == 'M' %}Male{% endif %}{% if dud.gender == 'F' %}Female{% endif %}
+        who works as a {{ dud.occupation }} in zip code area: {{ dud.zipcode }}
+    </li>
+    {% endfor %}
+</ol>

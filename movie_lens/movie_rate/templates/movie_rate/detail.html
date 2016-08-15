@@ -1,0 +1,16 @@
+<h1>{{ movie.title }}</h1>
+<ol>
+{% for movie in movies %}
+    <li>
+        {{ task.description }}: {{ task.get_status }}
+        <button>Edit</button>
+        <!-- OR -->
+        <!-- <input type="text" value="{{ task.description }}">
+            <select name="status"> -->
+
+            <!-- </select> -->
+            {{ task.get_status }}
+
+    </li>
+    {% endfor %}
+</ol>

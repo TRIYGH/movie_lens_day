@@ -1,0 +1,9 @@
+<h1>RATINGS !!!</h1>
+<ol>
+{% for rating in ratings %}
+    <li>
+        Rater: {{ rating.rater }},  reviewed this movie:  {{ rating.movie }}
+        and gave it a {{ rating.rating }} on:   {{ rating.timestamp }}
+    </li>
+    {% endfor %}
+</ol>

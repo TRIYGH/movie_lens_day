@@ -1,5 +1,5 @@
 from django.db import models
-
+# from movie_rate.models import Movie, Rater, Rating
 
 class Movie(models.Model):
     title = models.CharField(max_length=300)
@@ -32,21 +32,36 @@ class Rating(models.Model):
     def __str__(self):
         return str(self.rating)
 
-    # def movie_avg_rating():
+    def individual_movie_avg_rating(which_movie):
+        total_rate = 0
+        the_movie = Rating.objects.filter(movie_id=which_movie)
 
+        for each in the_movie:
+            total_rate += each.rating
+        try:
+            ind_rating = total_rate/len(the_movie)
+        except:
+            ind_rating = 0
 
+        if len(the_movie) < 20:
+            ind_rating = .01
+        return (ind_rating)
 
     def get_ratings_of_specific_movie(requested_movie):
-        all_movies = Movie.objects.all(movie=requested_movie)
-        return all_movies
+        all_ratings = Rating.objects.filter(movie_id=requested_movie)
+        return all_ratings
 
     def top_movies(num):
-        avg = []
+        averages = []
         top = []
-        top_10_movies = Movie.objects.all()
-        for each in top_10_movies:
-            avg.append(mean(sum(get_ratings_of_specific_movie(each))))
-        avg.sort(reverse=True)
+        top_movies = Movie.objects.all().count()
+        for i in range(top_movies):
+            avg = Rating.individual_movie_avg_rating(i+1)
+            averages.append((avg, i+1))
+            print("\n"*50)
+            c = (i+1) / 1683
+            print("Percentage complete:  ",c, "%")
+        averages.sort(reverse=True)
         for i in range(num):
-            top.append(avg[i])
-        return top
+            top.append(averages[i])
+        return top      # returns list of TUPLES !

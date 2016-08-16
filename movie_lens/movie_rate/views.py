@@ -31,7 +31,22 @@ def rating_view(request, rating_id):
     context = {'ratings': ratings}
     return render(request, 'movie_rate/rating_view.html', context)
 
+def top20_view(request):
+    top_movie_list = Rating.top_movies(20)
+    context = {'top_movie_list': top_movie_list}
+    return render(request, 'movie_rate/top20_view.html', context)
 
+def movie_detail_view(request):
+    this_movie = 111 #ask for this
+    m = Movie.objects.filter(pk=this_movie)
+    for each in m: #bc it will not get out of query form
+        mv = m
+    movie_detail = Rating.get_ratings_of_specific_movie(this_movie)
+    avg_rate = Rating.individual_movie_avg_rating(this_movie)
+    context = {'movie_detail': movie_detail,
+                'avg_rate': avg_rate,
+                'mv': mv}
+    return render(request, 'movie_rate/movie_detail_view.html', context)
 
 
 # def index(request):

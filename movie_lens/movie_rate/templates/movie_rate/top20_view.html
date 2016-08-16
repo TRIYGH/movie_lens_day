@@ -1,0 +1,12 @@
+
+<h2>Top 20 View:</h2>
+<br>
+<h4>__MOVIE_____________________________AVERAGE RATING__</h4>
+<br>
+<ol>
+{% for top in top_movie_list %}
+    <li>
+        {{ Movie.objects.filter(pk=top[1]) }} \t {{ top[0] }}
+    </li>
+    {% endfor %}
+</ol>

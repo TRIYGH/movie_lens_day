@@ -1,0 +1,13 @@
+
+<h2>Movie Detail View:</h2>
+<br>
+<h4>__MOVIE_____________________________AVERAGE RATING__</h4>
+<br>
+<p>{{ mv }} ------------- {{ avg_rate }}</p>    
+<ol>
+{% for each in movie_detail %}
+    <li>
+        find each rater:  {{ each }}
+    </li>
+    {% endfor %}
+</ol>
